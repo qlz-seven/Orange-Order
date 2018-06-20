@@ -5,94 +5,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-    .clear{clear:both;}
-    .main {
-	margin: 0px 0px 30px 0px;
-	background: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	line-height: 150%;
-	color: #000000; /*#666666*/
-	text-align: center;
-	vertical-align: top;
-}
-    #s_top{
-        height:100px;
-        padding:2px 100px;
-    }
-    #s_top img{
-        float:left;
-        width:200px;
-        height:100px;
-    }
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
 
-    #s_mod{
-        width:600px;
-        height:40px;
-        text-align:right;
-        margin-top:20px;
-        font-size:20px;
-    }
-    #s_mod a{
-        text-decoration:none;
-        font-size:20px;
-        color:#06F;
-    }
-     #s_mod a:hover{
-        color:red;
-    }
-    #s_info{
-        border:1px solid #999;
-        height:400px;
-        width:70%;
-        margin:8px auto 15px;
-    }
-    #dm p{
-        font-size:25px;
-        float:left;
-        width:200px;
-    }
-    #dm img{
-        float:left;
-        width:200px;
-        padding:20px 20px;
-    }
-    #gg{
-        width:600px;
-        height:150px;
-        border:1px solid #999;
-        margin:50px auto 8px;
-    }
-    #gg p{
-        text-align:center;
-    }
-    #gg span{
-        margin:50px;
-    }
-    hr{
-        color:#FFA500;
-    }
-</style>
 </head>
-<body class="main">
-    <div>
-        <div id="s_top">
-            <img alt="" src="images/logo.jpg">
-            <h1 style="margin:30px;float:left">橘子外卖</h1>
+<body>
+    <div style="background:#fff;">
+        <div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlet">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
         </div>
         <div class="clear"></div>
         <hr/>
-        <div id="s_mod">
-               <a href="${pageContext.request.contextPath}/checkOrderServlet">订单管理|</a>&nbsp;&nbsp;
-               <a href="${pageContext.request.contextPath}/findAlldishServlet">商品管理|</a>&nbsp;&nbsp;
-               <a href="${pageContext.request.contextPath }/findSUserByIdServlet?id=${store.storeId}">账户管理</a>&nbsp;&nbsp;   
-        </div>
+        
         <hr/>
         <div id="s_info">
             <div id="dm">
                 <p style="padding:40px 5px;">${store.storeName }</p>
-                <img alt="" src="${pageContext.request.contextPath }/images/1.jpeg">
+                <img alt="" src="${store.imgUri }">
             </div>
             <div class="clear"></div>
             <hr style="width:80%;align:center;"/>

@@ -16,12 +16,12 @@ public class OrderService {
 	
 
 
-	public List<Order> findOrderList1(String storeName) throws OrderException {
+	public List<Order> findOrderList1(int storeId) throws OrderException {
 		try {
-			return od.findOrderList1(storeName);
+			return od.findOrderList1(storeId);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new OrderException("状态为1的订单查找失败");
+			throw new OrderException("没有待处理订单");
 		}
 	}
 

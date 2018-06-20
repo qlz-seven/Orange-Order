@@ -7,24 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.orange.domain.StoreUser;
-import com.orange.exception.UserException;
-import com.orange.service.S_UserService;
+import com.orange.domain.Store;
+import com.orange.exception.StoreException;
+import com.orange.service.StoreService;
 
 /**
- * Servlet implementation class FindSUserByIdServlet
+ * Servlet implementation class FindStoreByIdServlet
  */
-@WebServlet("/findSUserByIdServlet")
-public class FindSUserByIdServlet extends HttpServlet {
+@WebServlet("/findStoreByIdServlet")
+public class FindStoreByIdServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String storeId = request.getParameter("storeId");
-		S_UserService sus = new S_UserService();
+		StoreService sus = new StoreService();
 		try {
-			StoreUser store = sus.findUserById(storeId);
+			Store store = sus.findUserById(storeId);
 			request.setAttribute("store", store);
 			request.getRequestDispatcher("/store/storeinfo.jsp").forward(request, response);
-		} catch (UserException e) {
+		} catch (StoreException e) {
 			e.printStackTrace();
 			response.sendRedirect(request.getContextPath()+"/store/store_login.jsp");
 		}

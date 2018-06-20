@@ -6,9 +6,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>店铺账户信息</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/main.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
+
 </head>
-<body style="background:#fff">
-    <%@include file="mhead.jsp"%>
+<body>
+	
+	<div style="background:#fff">
+	
+	<div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlet">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <hr/>
+	
+	
     <p style="font-size:17px;padding:5px 60px;">>>我的账户>>
     <a href="${pageContext.request.contextPath }/store/storeinfomodify.jsp" style="font-size:17px;padding:5px 5px;">商家信息修改</a>
     <a href="${pageContext.request.contextPath }/logoutServlet">商家退出</a>
@@ -36,7 +66,7 @@
 							</tr>
 							<tr>
 								<td style="text-align:right">商家地址：</td>
-								<td style="padding-left:20px">${store.addr}</td>
+								<td style="padding-left:20px">${store.address}</td>
 							</tr>
 							<tr>
 								<td style="text-align:right">商家商品类型：</td>
@@ -83,6 +113,7 @@
 					</td>
 			</tr>
 		</table>
+		</div>
     <jsp:include page="foot.jsp" />
 </body>
 </html>

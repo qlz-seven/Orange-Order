@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.orange.domain.StoreUser;
-import com.orange.exception.UserException;
-import com.orange.service.S_UserService;
+import com.orange.domain.Store;
+import com.orange.exception.StoreException;
+import com.orange.service.StoreService;
 
 
 @WebServlet("/sregisterServlet")
@@ -21,16 +21,16 @@ public class S_RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//获取表单数据
-		StoreUser store = new StoreUser();
+		Store store = new Store();
 		try {
 			BeanUtils.populate(store, request.getParameterMap());
 			//调用业务逻辑
-			S_UserService usi =  new S_UserService();
+			StoreService usi =  new StoreService();
 			usi.regist(store);
 			//分发转向
 			request.getSession().setAttribute("store", store);
 			request.getRequestDispatcher("/store/registsuccess.jsp").forward(request, response);
-		}catch(UserException e) {
+		}catch(StoreException e) {
 			request.setAttribute("store_msg", e.getMessage());
 			request.getRequestDispatcher("/store/store_registe.jsp").forward(request, response);
 			return;

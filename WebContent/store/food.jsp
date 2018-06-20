@@ -9,17 +9,44 @@
 <title>菜单列表</title>
 <link href="${pageContext.request.contextPath}/store/css/Style.css"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
 <script language="javascript"
 	src="${pageContext.request.contextPath}/store/js/public.js"></script>
 <script type="text/javascript">
-	function addDish() {
-		window.location.href = "store/dish_add.jsp";
+	function addFood() {
+		window.location.href = "store/food_add.jsp";
 	}
 </script>
 </head>
-<body style="background:#fff">
-    <%@include file="mhead.jsp"%>
-   
+<body>
+	<div style="background:#fff;height:700px;">
+   		
+   		<div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlet">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <hr/>
+   		
+   		
     <br>
 	
 		<table cellSpacing="1" cellPadding="0" width="100%" align="center"
@@ -27,18 +54,19 @@
 			<TBODY>
 				
 				<tr>
-					<td class="ta_01" align="center" bgColor="#FFA500"><strong>菜单列表</strong>${deldish_msg }
+					<td class="ta_01" align="center" bgColor="#FFA500"><strong>菜单列表</strong>${delfood_msg }
 					</td>
 				</tr>
 				<tr>
 					<td class="ta_01" align="right">
-						<form action="${pageContext.request.contextPath }/findDishByManyConditionServlet">
-						<input type="text" name="dishName">
+						<button type="button" id="add" name="add" value="&#28155;&#21152;"
+							class="button_add" onclick="addFood()">&#28155;&#21152;
+						</button>
+						<form action="${pageContext.request.contextPath }/findFoodByManyConditionServlet" method="post">
+						<input type="text" name="foodName">
 						<input type="submit" name="serch" value="查询" >
 						</form>
-						<button type="button" id="add" name="add" value="&#28155;&#21152;"
-							class="button_add" onclick="addDish()">&#28155;&#21152;
-						</button>
+						
 					</td>
 				</tr>
 				<tr>
@@ -60,32 +88,32 @@
 								<td width="8%" align="center">删除</td>
 							</tr>
 
-							<c:forEach items="${dish }" var="d">
+							<c:forEach items="${food }" var="d">
 								<tr onmouseover="this.style.backgroundColor = 'white'"
 									onmouseout="this.style.backgroundColor = '#F5FAFE';">
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="23">${d.dishId }</td>
+										width="23">${d.foodId }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="18%">${d.dishName }</td>
+										width="18%">${d.foodName }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">${d.price}</td>
+										width="8%">${d.foodPrice}</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">${d.num }</td>
+										width="8%">${d.salesNum }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${d.dishType }</td>
+										${d.foodType }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${d.dishImg }</td>
+										${d.foodUri }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${d.dishDescription }</td>
+										${d.foodDescription }</td>
 									<td align="center" style="HEIGHT: 22px" width="7%"><a
-										href="${pageContext.request.contextPath }/findDishByIdServlet?dishId=${d.dishId}">
+										href="${pageContext.request.contextPath }/findFoodByIdServlet?foodId=${d.foodId}">
 											<img
 											src="${pageContext.request.contextPath}/store/images/i_edit.gif"
 											border="0" style="CURSOR: hand"> </a>
 									</td>
 
 									<td align="center" style="HEIGHT: 22px" width="7%"><a
-										href="${pageContext.request.contextPath }/delDishServlet?dishId=${d.dishId}">
+										href="${pageContext.request.contextPath }/delFoodServlet?foodId=${d.foodId}">
 											<img
 											src="${pageContext.request.contextPath}/store/images/i_del.gif"
 											width="16" height="16" border="0" style="CURSOR: hand">
@@ -99,6 +127,7 @@
 				</tr>
 			</TBODY>
 		</table>
+		</div>
 	<%@include file="foot.jsp"%>
 </body>
 </html>

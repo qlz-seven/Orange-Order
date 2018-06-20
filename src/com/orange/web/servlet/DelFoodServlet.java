@@ -1,34 +1,34 @@
 package com.orange.web.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.orange.domain.Dish;
-import com.orange.exception.DishException;
-import com.orange.service.DishService;
+
+import com.orange.exception.FoodException;
+import com.orange.service.FoodService;
 
 /**
- * Servlet implementation class FindDishByIdServlet
+ * Servlet implementation class DelFoodServlet
  */
-@WebServlet("/findDishByIdServlet")
-public class FindDishByIdServlet extends HttpServlet {
+@WebServlet("/delFoodServlet")
+public class DelFoodServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dishId = request.getParameter("dishId");
-		DishService ds = new DishService();
+		String id = request.getParameter("foodId");
+		int foodId = Integer.parseInt(id);
+		FoodService ds = new FoodService();
 		try {
-			Dish dish = ds.findDishById(dishId);
-			request.setAttribute("dish", dish);
-			request.getRequestDispatcher("/store/dish_edit.jsp").forward(request, response);
-		} catch (DishException e) {
+			ds.delFood(foodId);
+			request.getRequestDispatcher("/store/food.jsp").forward(request, response);
+		} catch (FoodException e) {
 			e.printStackTrace();
-			request.setAttribute("dish_msg",e.getMessage());
-			request.getRequestDispatcher("/store/dish_edit.jsp").forward(request, response);
-			
+			request.setAttribute("delfood_msg", e.getMessage());
+			request.getRequestDispatcher("/store/food.jsp").forward(request, response);
 		}
 	}
 

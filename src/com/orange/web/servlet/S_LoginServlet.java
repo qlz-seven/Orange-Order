@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.orange.domain.StoreUser;
-import com.orange.exception.UserException;
-import com.orange.service.S_UserService;
+import com.orange.domain.Store;
+import com.orange.exception.StoreException;
+import com.orange.service.StoreService;
 
 /**
  * Servlet implementation class S_LoginServlet
@@ -23,12 +23,12 @@ public class S_LoginServlet extends HttpServlet {
 		String storeName = request.getParameter("storeName");
 		String password = request.getParameter("password");
 		
-		S_UserService us = new S_UserService();
+		StoreService us = new StoreService();
 		try {
-			StoreUser store = us.login(storeName,password);
+			Store store = us.login(storeName,password);
 			request.getSession().setAttribute("store", store);
 			request.getRequestDispatcher("/store/index.jsp").forward(request, response);
-		} catch (UserException e) {
+		} catch (StoreException e) {
 			e.printStackTrace();
 			request.setAttribute("store_msg", e.getMessage());
 			request.getRequestDispatcher("/store/store_login.jsp").forward(request, response);

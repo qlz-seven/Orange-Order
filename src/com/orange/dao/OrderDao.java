@@ -20,22 +20,22 @@ public class OrderDao {
 
 	
 	//通过商家名称找到订单状态为1的所有订单
-	public List<Order> findOrderList1(String storeName) throws SQLException {
+	public List<Order> findOrderList1(int storeId) throws SQLException {
 		QueryRunner qr = new QueryRunner(C3P0Util.getDataSource());
-		return qr.query("SELECT * FROM s_order where storeName=? and state=1;", new BeanListHandler<Order>(Order.class),storeName);
+		return qr.query("SELECT * FROM s_order where storeId=? and orderState='yizhifu'", new BeanListHandler<Order>(Order.class),storeId);
 	}
 
 	
 	//通过订单ID找到订单并把订单状态设置为3，表示已送餐
 	public void send(String orderId) throws SQLException {
 		QueryRunner qr = new QueryRunner(C3P0Util.getDataSource());
-		qr.update("update s_order set state=3 where orderId=?", orderId);
+		qr.update("update s_order set orderState='yisongcan' where orderId=?", orderId);
 	}
 
 	//通过订单ID查找订单并把订单状态设置为2，表示已接单
 	public void acceptOrder(String orderId) throws SQLException {
 		QueryRunner qr = new QueryRunner(C3P0Util.getDataSource());
-		qr.update("update s_order set state=2 where orderId=?", orderId);
+		qr.update("update s_order set orderState='yijiedan' where orderId=?", orderId);
 	}
 
 	public Order findOrderById(String orderId) throws SQLException {

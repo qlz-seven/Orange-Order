@@ -13,37 +13,37 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.orange.domain.Dish;
-import com.orange.domain.StoreUser;
-import com.orange.exception.DishException;
-import com.orange.service.DishService;
+import com.orange.domain.Food;
+import com.orange.domain.Store;
+import com.orange.exception.FoodException;
+import com.orange.service.FoodService;
 
 /**
- * Servlet implementation class DishAddServlet
+ * Servlet implementation class FoodAddServlet
  */
-@WebServlet("/dishAddServlet")
-public class DishAddServlet extends HttpServlet {
+@WebServlet("/foodAddServlet")
+public class FoodAddServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//获取表单数据
-		Dish dish = new Dish();
+		Food food = new Food();
 		HttpSession session = request.getSession();
-		StoreUser store = (StoreUser) session.getAttribute("store");
+		Store store = (Store) session.getAttribute("store");
 		try {
 			try {
-				BeanUtils.populate(dish, request.getParameterMap());
-				dish.setStoreId(store.getStoreId());
+				BeanUtils.populate(food, request.getParameterMap());
+				food.setStoreId(store.getStoreId());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			//调用业务逻辑
-			DishService ds = new DishService();
-			ds.addDish(dish);
+			FoodService ds = new FoodService();
+			ds.addFood(food);
 			//分发转向
-			request.getRequestDispatcher("/store/dish_addsuccess.jsp").forward(request, response);
-		} catch (DishException e) {
-			request.setAttribute("dishadd_msg", e.getMessage());
-			request.getRequestDispatcher("/store/dish_add.jsp").forward(request, response);
+			request.getRequestDispatcher("/store/food_addsuccess.jsp").forward(request, response);
+		} catch (FoodException e) {
+			request.setAttribute("foodadd_msg", e.getMessage());
+			request.getRequestDispatcher("/store/food_add.jsp").forward(request, response);
 			return;
 		}
 	}

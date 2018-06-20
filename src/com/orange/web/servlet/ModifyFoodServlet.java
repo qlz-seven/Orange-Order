@@ -12,33 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.orange.domain.StoreUser;
+import com.orange.domain.Food;
 
-import com.orange.service.S_UserService;
+import com.orange.service.FoodService;
 
 /**
- * Servlet implementation class ModifySUserServlet
+ * Servlet implementation class ModifyFoodServlet
  */
-@WebServlet("/modifySUserServlet")
-public class ModifySUserServlet extends HttpServlet {
+@WebServlet("/modifyFoodServlet")
+public class ModifyFoodServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//获取表单数据
-		StoreUser store = new StoreUser();
+		Food food = new Food();
+		try {
 			
-			try {
-				BeanUtils.populate(store, request.getParameterMap());
-				//调用业务逻辑
-				S_UserService sus = new S_UserService();
-				sus.modifySUser(store);
-				
-				//分发转向
-				request.getSession().invalidate();//相当于注销
-				response.sendRedirect(request.getContextPath()+"/store/modifysuccess.jsp");
-			} catch (Exception e) {
-				response.getWriter().write(e.getMessage());
-			}
+			BeanUtils.populate(food, request.getParameterMap());
 			
+			FoodService ds = new FoodService();
+			ds.modifyFood(food);
+			response.sendRedirect(request.getContextPath()+"/store/modifyfoodsucc.jsp");
+		} catch (Exception e) {
+			response.getWriter().write(e.getMessage());
+		}
 	}
 
 	/**

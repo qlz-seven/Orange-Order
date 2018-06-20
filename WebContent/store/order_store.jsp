@@ -6,46 +6,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单信息</title>
-<style type="text/css">
-    .clear{clear:both;}
-    .divleft{
-        float:left;
-        width:600px;
-        height:600px;
-        border:1px solid #999;
-        margin-left:100px;
-        margin-right:10px;
-    }
-    
-    .op{
-        font-size:30px;
-        padding:10px 10px;
-        text-align:center;
-    }
-    .ophr{
-        width:1300px;
-        margin:8px auto 8px;
-    }
-    .lop{
-        font-size:18px;
-        margin:10px 10px;
-    }
-    .tb{
-        width:550px;
-        border:1px solid #999;
-        margin:20px 20px;
-    }
-    
-   
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
+
 </head>
-<body style="background:#FFFFFF;font-size:15px;">
-    <%@include file="mhead.jsp"%>
+<body>
+	<div style="background:#FFFFFF;font-size:15px;">
+	<div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlet">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <hr/>
 
     <p class="op">订单管理 ${orderList1_msg }</p>
     <hr class="ophr">
     <div class="divleft">
-        <span class="lop">待处理</span>
+        <span class="lop">待处理${orderList1_msg }</span>
         <c:forEach items="${orderList1 }" var="o">
         <table class="tb" cellspacing="0">
             <tr>
@@ -53,15 +47,15 @@
                 <td width="200px"><a href="${pageContext.request.contextPath }/findOrderByIdServlet?orderId=${o.orderId}">订单详情>></a></td>
             </tr>
             <tr>
-                <td width="85%" align="right">
+                <td style="width:85%;align:right;padding:5px;">
                 <a href="${pageContext.request.contextPath }/acceptOrderServlet?orderId=${o.orderId}">接单</a></td>
                 <td width="15%"><a href="">拒绝</a></td>
             </tr>
         </table>
         </c:forEach>
     </div>
-    
-   
+    <div class="clear"></div>
+   </div>
 
     <%@include file="foot.jsp"%>
 </body>

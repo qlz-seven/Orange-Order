@@ -15,7 +15,7 @@
 
 <body class="main" onload="startSecond()">
 
-	<jsp:include page="head.jsp"></jsp:include>
+
 
 
 	<div id="divcontent">

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/NewFile.css" type="text/css" />
 </head>
 <body>
-    <div class="site-footer group" role="contentinfo"> 
+    <div class="site-footer group" role="contentinfo" id="glideDiv0"> 
     	<div class="container"> 
     		<p class="sfooter-line"> <a class="sfooter-link">我要开店</a> | <a class="sfooter-link" href="contact.jsp">联系我们</a> | <a class="sfooter-link" >服务条款和协议</a>  | <a class="sfooter-link">加入我们</a> </p> 
    	    	<p class="sfooter-line">版权@orange工作室</p> 

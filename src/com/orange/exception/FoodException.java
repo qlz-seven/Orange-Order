@@ -1,28 +1,28 @@
 package com.orange.exception;
 
-public class DishException extends Exception{
+public class FoodException extends Exception{
 
-	public DishException() {
+	public FoodException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public DishException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public FoodException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public DishException(String message, Throwable cause) {
+	public FoodException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public DishException(String message) {
+	public FoodException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public DishException(Throwable cause) {
+	public FoodException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,7 +1,7 @@
 package com.orange.web.servlet;
 
 import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,32 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.orange.domain.Dish;
-import com.orange.domain.StoreUser;
-import com.orange.exception.DishException;
-import com.orange.service.DishService;
+import com.orange.domain.Food;
+import com.orange.exception.FoodException;
+import com.orange.service.FoodService;
+
+
+import com.orange.domain.Store;
+
 
 /**
- * Servlet implementation class FindAlldishServlet
+ * Servlet implementation class FindFoodByManyConditionServlet
  */
-@WebServlet("/findAlldishServlet")
-public class FindAlldishServlet extends HttpServlet {
+@WebServlet("/findFoodByManyConditionServlet")
+public class FindFoodByManyConditionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		//获取表单数据
+		String foodName = request.getParameter("foodName");
 		HttpSession session = request.getSession();
-		StoreUser store = (StoreUser) session.getAttribute("store");
+		Store store = (Store)session.getAttribute("store");
 		int storeId = store.getStoreId();
 		
-		DishService ds = new DishService();
+		FoodService ds = new FoodService();
 		try {
-			List<Dish> dish = ds.findAlldish(storeId);
-			request.setAttribute("dish", dish);
-			request.getRequestDispatcher("/store/dish.jsp").forward(request, response);
-		} catch (DishException e) {
+			Food food = ds.findFoodByFoodname(foodName,storeId);
+			request.setAttribute("food", food);
+			request.getRequestDispatcher("/store/food_list.jsp").forward(request, response);
+		} catch (FoodException e) {
 			e.printStackTrace();
-			request.setAttribute("dish_msg", e.getMessage());
-			request.getRequestDispatcher("/store/dish.jsp").forward(request, response);
+			request.setAttribute("food_msg", e.getMessage());
+			request.getRequestDispatcher("/store/food_list.jsp").forward(request, response);
 		}
+		
 	}
 
 	/**

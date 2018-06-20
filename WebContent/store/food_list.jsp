@@ -9,12 +9,39 @@
 <title>菜单查询列表</title>
 <link href="${pageContext.request.contextPath}/store/css/Style.css"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
 <script language="javascript"
 	src="${pageContext.request.contextPath}/store/js/public.js"></script>
 
 </head>
-<body style="background:#fff">
-    <%@include file="mhead.jsp"%>
+<body>
+    <div style="background:#fff;height:500px;">
+    
+    <div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlets">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <hr/>
+    
     <br>
 	
 		<table cellSpacing="1" cellPadding="0" width="100%" align="center"
@@ -22,7 +49,7 @@
 			<TBODY>
 				
 				<tr>
-					<td class="ta_01" align="center" bgColor="#FFA500"><strong>查询菜单列表${dish_msg }</strong>
+					<td class="ta_01" align="center" bgColor="#FFA500"><strong>查询菜单列表${food_msg }</strong>
 					</td>
 				</tr>
 				<tr>
@@ -47,28 +74,28 @@
 								<tr onmouseover="this.style.backgroundColor = 'white'"
 									onmouseout="this.style.backgroundColor = '#F5FAFE';">
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="23">${dish.dishId }</td>
+										width="23">${food.foodId }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="18%">${dish.dishName }</td>
+										width="18%">${food.foodName }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">${dish.price}</td>
+										width="8%">${food.foodPrice}</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="8%">${dish.num }</td>
+										width="8%">${food.salesNum }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${dish.dishType }</td>
+										${food.foodType }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${dish.dishImg }</td>
+										${food.foodUri }</td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-										${dish.dishDescription }</td>
+										${food.foodDescription }</td>
 									<td align="center" style="HEIGHT: 22px" width="7%"><a
-										href="${pageContext.request.contextPath }/${pageContext.request.contextPath }/findDishByIdServlet?dishId=${dish.dishId}">
+										href="${pageContext.request.contextPath }/${pageContext.request.contextPath }/findFoodByIdServlet?foodId=${food.foodId}">
 											<img
 											src="${pageContext.request.contextPath}/store/images/i_edit.gif"
 											border="0" style="CURSOR: hand"> </a>
 									</td>
 
 									<td align="center" style="HEIGHT: 22px" width="7%"><a
-										href="${pageContext.request.contextPath }/delDishServlet?dishId=${dish.dishId}">
+										href="${pageContext.request.contextPath }/delFoodServlet?foodId=${food.foodId}">
 											<img
 											src="${pageContext.request.contextPath}/store/images/i_del.gif"
 											width="16" height="16" border="0" style="CURSOR: hand">
@@ -80,6 +107,7 @@
 				</tr>
 			</TBODY>
 		</table>
+	</div>
 	<%@include file="foot.jsp"%>
 </body>
 </html>

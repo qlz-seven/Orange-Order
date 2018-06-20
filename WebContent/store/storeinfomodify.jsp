@@ -6,9 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商家信息管理</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/main.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/index.css" type="text/css"/>
+
 </head>
-<body style="background:#fff">
-    <jsp:include page="mhead.jsp" />
+<body>
+	<div style="background:#fff">
+	
+	<div id="headdiv">
+        	<div id="headone">
+        		<h1>Orange</h1>
+        	</div>
+
+        	<div id="headtwo">
+        		<input type="text" value="欢迎你：${store.storeName }" style="width:250px;">
+        	</div>
+
+        	<div id="headthree">
+        		<table>
+        			<tr>
+        				<td><a href="${pageContext.request.contextPath }/store/index.jsp">首页&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/checkOrderServlet">订单管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findAllfoodServlet">商品管理&nbsp;|&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/findStoreByIdServlet?storeId=${store.storeId}">账户管理&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_login.jsp">登录/</a></td>
+        				<td><a href="${pageContext.request.contextPath }/store/store_registe.jsp">注册</a></td>
+        			</tr>
+        		</table>
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <hr/>
+	
     <table cellspacing="0" class="infocontent">
 		<tr>
 			<td>
@@ -28,7 +56,7 @@
 							<tr>
 								<td style="text-align:right">密码：</td>
 								<td style="width:40%; padding-left:20px">
-									<input type="password" name="password" class="textinput" />
+									<input type="password" name="password" class="textinput" value="${store.password }"/>
 								</td>
 								<td><font color="#999999">密码设置至少6位，请区分大小写</font>
 								</td>
@@ -43,7 +71,7 @@
 							<tr>
 								<td style="text-align:right">地址：</td>
 								<td style="width:40%; padding-left:20px">
-									<input type="text" name="addr" value="${store.addr}" class="textinput"/>
+									<input type="text" name="address" value="${store.address}" class="textinput"/>
 								</td>
 								<td>&nbsp;</td>
 							</tr>
@@ -80,6 +108,7 @@
 							<tr>
 								<td style="text-align:right">店铺头像：</td>
 								<td style="width:40%; padding-left:20px">
+									<img alt="" src="${store.imgUri }" style="width:60px;height:60px;">
 									<input type="file" name="imgUri" size="30" value="${store.imgUri }"/>
 								</td>
 								<td>&nbsp;</td>
@@ -113,6 +142,8 @@
 					</form></td>
 			</tr>
 		</table>
+		
+	</div>
     <jsp:include page="foot.jsp" />
 </body>
 </html>

@@ -7,13 +7,19 @@
 
 <title>Store注册页面</title>
 <%--导入css --%>
-<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/store/css/main.css" type="text/css" />
 
 </head>
 
 
-<body class="main">
-	<%@include file="head.jsp"%>
+<body>
+
+<div style="background:#fff;">
+	<header class="header" >
+		<h1>orange | 开店？上橙子外卖！</h1>
+	</header>
+	
+	<div class="clear"></div>
 	<div id="divcontent">
 		<form action="${pageContext.request.contextPath}/sregisterServlet"
 			method="post">
@@ -51,7 +57,7 @@
 							<tr>
 								<td style="text-align:right">地址：</td>
 								<td><input type="text" class="textinput"
-									name="addr" /></td>
+									name="address" /></td>
 							</tr>
 
 						</table>
@@ -66,8 +72,12 @@
 				</tr>
 			</table>
 		</form>
+		</div>
+        <br/>
+		<br/>
+		<br/>
 	</div>
-
+	<div class="clear"></div>
 
 
 	
